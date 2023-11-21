@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProvider";
+import logo from '../../assets/login.svg';
 
 
 const SignUp = () => {
@@ -42,13 +43,12 @@ const SignUp = () => {
         <Helmet>
         <title>Bistro || Signup</title>
         </Helmet>
-        <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left md:w-1/2">
-            <h1 className="text-5xl font-bold">Sign Up!</h1>
-            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <div className="flex justify-center items-center h-[800px] bg-base-200 px-36 mt-10 rounded-xl">
+        <div className="md:flex items-center ">
+          <div className="md:flex-1 ">
+            <img className='w-64' src={logo} alt="" />
           </div>
-          <div className="card flex-shrink-0 md:w-1/2 max-w-sm shadow-2xl  bg-base-100">
+          <div className=" md:flex-1 shadow-2xl md:ml-8  rounded-xl bg-base-100">
             <form  onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
