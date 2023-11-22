@@ -1,5 +1,6 @@
 import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaPhone, FaShoppingCart, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 import useCart from "../Hooks/useCart";
 
 
@@ -7,7 +8,7 @@ const DashBoard = () => {
 
     const [cart] = useCart();
     // ToDO: get admin value from dataBase
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <section className="md:flex">
