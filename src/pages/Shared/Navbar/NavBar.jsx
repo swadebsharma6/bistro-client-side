@@ -1,11 +1,13 @@
 import { useContext } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Firebase/Providers/AuthProvider";
-
+import useCart from "../../../Hooks/useCart";
 
 const NavBar = () => {
 
   const {user, logOutUser} = useContext(AuthContext);
+  const [cart] = useCart();
 
   const handleLogOut =()=>{
     logOutUser()
@@ -19,7 +21,12 @@ const NavBar = () => {
         <li><Link to='/menu'>Menu</Link></li>
         <li><Link to='/order/salad'>Order Food</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
-        
+        <li>
+          <Link to='/'>
+             <FaShoppingCart></FaShoppingCart>
+          <div className="badge badge-secondary">+{cart.length}</div>
+          </Link>
+        </li>
         {user 
           ? 
           <li><button onClick={handleLogOut} className="btn btn-sm btn-secondary "> LogOut </button></li>
@@ -33,7 +40,7 @@ const NavBar = () => {
 
     return (
         <div>
-        <div className="navbar fixed z-20 bg-opacity-40 bg-slate-200 max-w-screen-xl">
+        <div className="navbar fixed z-20 bg-opacity-30 bg-slate-600 py-4 max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -51,10 +58,12 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-         <div className="w-16 bg-orange-400 rounded-full">
-          <img src='' />
-         </div>
-    
+        { user && <p className="text-white font-bold">{user.displayName}</p>}
+        <div className="avatar">
+        <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+         { user && <img src={user.photoURL} />}
+        </div>
+      </div>
         </div>
       </div>
         </div>
