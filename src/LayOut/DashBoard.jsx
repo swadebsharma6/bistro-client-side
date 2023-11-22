@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaPhone, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaPhone, FaShoppingCart, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 
@@ -6,11 +6,42 @@ import useCart from "../Hooks/useCart";
 const DashBoard = () => {
 
     const [cart] = useCart();
+    // ToDO: get admin value from dataBase
+    const isAdmin = true;
 
     return (
         <section className="md:flex">
             <div className="md:w-64 md:min-h-screen bg-orange-400">
             <ul className="menu">
+               { 
+                isAdmin ? <>
+                <li> 
+                <NavLink to='/dashboard/adminHome'>
+                <FaHome></FaHome>
+               Admin Home</NavLink>
+                </li>
+                <li> 
+                <NavLink to='/dashboard/addItems'>
+                <FaUtensils></FaUtensils>
+                Add Items</NavLink>
+                </li>
+                <li> 
+                <NavLink to='/dashboard/manageItem'>
+                <FaList></FaList>
+               Manage Items </NavLink>
+                </li>
+                <li> 
+                <NavLink to='/dashboard/manageBooking'>
+                <FaBook></FaBook>
+                ManageBookings</NavLink>
+                </li>
+                <li> 
+                <NavLink to='/dashboard/users'>
+                <FaUser></FaUser>
+                All Users</NavLink>
+                </li>
+                </>
+                 : <>
                 <li> 
                 <NavLink to='/dashboard/userHome'>
                 <FaHome></FaHome>
@@ -36,6 +67,10 @@ const DashBoard = () => {
                 <FaList></FaList>
                 My Bookings</NavLink>
                 </li>
+                </>
+               }
+
+                {/*Shared NavLinks for Common user and Admin user*/}
                 <div className="divider  divider-primary"></div>
 
                 <li> 

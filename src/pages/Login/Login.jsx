@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate, } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Firebase/Providers/AuthProvider";
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const {logInUser} = useContext(AuthContext);
@@ -69,6 +70,8 @@ const Login = () => {
               </div>
             </form>
             <p className="text-center font-bold pb-10">New to this site ? Please  <Link className="text-purple-500" to='/signup'>SignUp</Link></p>
+            <div className="divider">OR</div>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

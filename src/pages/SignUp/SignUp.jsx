@@ -4,10 +4,13 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Firebase/Providers/AuthProvider";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import logo from "../../assets/login.svg";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUser } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -24,20 +27,29 @@ const SignUp = () => {
         console.log("create user", user);
         updateUser(data.name, data.photo)
           .then(() => {
-            console.log('Profile Updated')
-            reset();
+            const userInfo ={
+              name: data.name,
+              email: data.email
+            }
+            // send user data to database
+            axiosPublic.post('/users', userInfo)
+            .then(res =>{
+              if(res.data.insertedId){
+                console.log('user added to database')
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User Signup Successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                reset();
+              }
+            })
           })
           .catch((error) => {
             console.log(error.message);
           });
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "User Signup Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        
       })
       .catch((error) => {
         console.log(error.message);
@@ -126,12 +138,15 @@ const SignUp = () => {
                 </button>
               </div>
             </form>
+         
             <p className="text-center font-bold pb-10">
               New to this site ? Please{" "}
               <Link className="text-purple-500" to="/login">
                 Login
               </Link>
             </p>
+            <div className="divider">OR</div>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
