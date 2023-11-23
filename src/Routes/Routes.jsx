@@ -3,11 +3,13 @@ import DashBoard from "../LayOut/DashBoard";
 import Main from "../LayOut/Main";
 import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
+import AdminHome from "../pages/DashBoard/DashBoard/AdminHome/AdminHome";
 import Cart from "../pages/DashBoard/DashBoard/Cart/Cart";
 import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
 import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
+import UserHome from "../pages/DashBoard/UserHome/UserHome";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
@@ -55,6 +57,10 @@ export const router = createBrowserRouter([
       children:[
         // normal users routes
         {
+          path: 'userHome',
+          element: <UserHome></UserHome>
+        },
+        {
           path: 'cart',
           element: <Cart></Cart>
         },
@@ -68,6 +74,10 @@ export const router = createBrowserRouter([
         },
 
         // admin only
+        {
+          path: 'adminHome',
+          element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>
+        },
         {
           path: 'manageItem',
           element: <AdminRoutes><ManageItems></ManageItems></AdminRoutes>

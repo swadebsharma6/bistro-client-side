@@ -46,12 +46,13 @@ const DashBoard = () => {
                 <FaUser></FaUser>
                 Payment History</NavLink>
                 </li>
-                </>
-                 : <>
-                <li> 
+                </>:
+                 <>
+                 <li> 
                 <NavLink to='/dashboard/userHome'>
-                <FaHome></FaHome>
-                Home</NavLink>
+                  <FaHome></FaHome>
+                  User Home
+                  </NavLink>
                 </li>
                 <li> 
                 <NavLink to='/dashboard/reservation'>
