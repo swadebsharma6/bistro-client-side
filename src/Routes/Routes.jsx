@@ -4,6 +4,10 @@ import Main from "../LayOut/Main";
 import AddItem from "../pages/DashBoard/AddItem/AddItem";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import Cart from "../pages/DashBoard/DashBoard/Cart/Cart";
+import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
+import Payment from "../pages/DashBoard/Payment/Payment";
+import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
+import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
@@ -54,11 +58,28 @@ export const router = createBrowserRouter([
           path: 'cart',
           element: <Cart></Cart>
         },
+        {
+          path: 'payment',
+          element: <Payment></Payment>
+        },
+        {
+          path: 'paymentHistory',
+          element: <PaymentHistory></PaymentHistory>
+        },
 
         // admin only
         {
+          path: 'manageItem',
+          element: <AdminRoutes><ManageItems></ManageItems></AdminRoutes>
+        },
+        {
           path: 'addItems',
           element: <AdminRoutes><AddItem></AddItem></AdminRoutes>
+        },
+        {
+          path: 'updateItem/:id',
+          element: <UpdateItem></UpdateItem>,
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
         },
         {
           path:'/dashboard/users',
