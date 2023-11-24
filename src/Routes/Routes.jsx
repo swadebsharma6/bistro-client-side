@@ -10,6 +10,7 @@ import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
 import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
 import UserHome from "../pages/DashBoard/UserHome/UserHome";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu/Menu";
@@ -49,7 +50,8 @@ export const router = createBrowserRouter([
           path: 'secret',
           element: <PrivetRoute><Secret></Secret></PrivetRoute>
         }
-      ]
+      ],
+      errorElement: <ErrorPage></ErrorPage>
     },
     {
       path:'/dashboard',
@@ -89,13 +91,14 @@ export const router = createBrowserRouter([
         {
           path: 'updateItem/:id',
           element: <UpdateItem></UpdateItem>,
-          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+          loader: ({params}) => fetch(`https://final-bistro-boss-server.vercel.app/menu/${params.id}`)
         },
         {
           path:'/dashboard/users',
           element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
         },
         
-      ]
+      ],
+      errorElement: <ErrorPage></ErrorPage>
     }
   ]);
